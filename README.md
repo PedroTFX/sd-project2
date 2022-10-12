@@ -9,23 +9,23 @@ client-server   ->    client_stub    ->    network_client
 
 Algumas dicas Uteis na realização de codigo:
      
-    • Recomenda-se  a  criação  de  funções  read_all  e  write_all  que  vão  receber  e  enviar 
+    - Recomenda-se  a  criação  de  funções  read_all  e  write_all  que  vão  receber  e  enviar 
 strings inteiras pela rede (lembrar que as funções read/write em sockets nem sempre 
 leem/escrevem tudo o que pedimos). Um bom sítio para concretizar essas funções é 
 num modulo separado a ser incluído pelo cliente e servidor ou no message-private.h 
 (concretizando-as no message.c).  
 
-    • Usar a função signal() para ignorar sinais do tipo SIGPIPE, lançados quando uma das 
+    - Usar a função signal() para ignorar sinais do tipo SIGPIPE, lançados quando uma das 
 pontas comunicantes fecha o socket de maneira inesperada. Isto deve ser feito tanto no 
 cliente quanto no servidor, evitando que um programa termine abruptamente (crash) 
 quando a outra parte é desligada. 
     
-    • Usar  a  função  setsockopt(...,  SO_REUSEADDR,  ...)  para  fazer  com  que  o  servidor 
+    - Usar  a  função  setsockopt(...,  SO_REUSEADDR,  ...)  para  fazer  com  que  o  servidor 
 consiga fazer bind a um porto usado anteriormente e registado pelo kernel como ainda 
 ocupado. Isto permite que o servidor seja reinicializado rapidamente, sem ter de esperar 
 o tempo de limpeza da árvore de portos usados, mantida pelo kernel. 
     
-    • Caso algum dos pedidos não possa ser atendido devido a um erro, o servidor vai retornar 
+    - Caso algum dos pedidos não possa ser atendido devido a um erro, o servidor vai retornar 
 {OP_ERROR, CT_RESULT, errcode} ou {OP_ERROR, CT_NONE} (dependendo do 
 pedido), onde errcode é o código do erro retornado ao executar a operação na árvore 
 do servidor (em geral, -1).  
