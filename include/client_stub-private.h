@@ -8,7 +8,7 @@
 #include "client_stub.h"
 
 struct rtree{
-    struct tree_t* tree;
+    char *port;
     //own port? socket?? adress??
 };
 
